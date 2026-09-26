@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --bg: #f5ecd9;
+  --surface: #fbf6ea;
+  --surface-2: #efe3c8;
+  --ink: #221c33;
+  --muted: #6b5f55;
+  --line: #d9c9a6;
+  --gold: #b47a1f;
+  --teal: #1d6e69;
+  --clay: #b04a2c;
+  --indigo: #3d3b86;
+  --good: #2f7d3a;
+  --bad: #b3372b;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #13111d;
+    --surface: #1c1929;
+    --surface-2: #262236;
+    --ink: #efe6d2;
+    --muted: #a99e8c;
+    --line: #3a3450;
+    --gold: #e0a84a;
+    --teal: #4fb3a9;
+    --clay: #e27a57;
+    --indigo: #9d9cf0;
+    --good: #6cc27a;
+    --bad: #f07565;
   }
 }
 
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-gold: var(--gold);
+  --color-teal: var(--teal);
+  --color-clay: var(--clay);
+  --color-indigo: var(--indigo);
+  --color-good: var(--good);
+  --color-bad: var(--bad);
+  --font-sans: var(--font-source);
+  --font-display: var(--font-fraunces);
+  --font-mono: var(--font-geist-mono);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-source), system-ui, sans-serif;
+}
+
+.pattern {
+  background-image:
+    radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--gold) 22%, transparent) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+input[type="range"] {
+  accent-color: var(--gold);
+}
+
+@keyframes pop {
+  from { transform: scale(0.4); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.pop { animation: pop 0.35s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
