@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getProblem, problems } from "@/lib/problems";
 import { visualizations } from "@/components/viz";
+import { pageMetadata } from "@/lib/og";
 
 export function generateStaticParams() {
   return problems.map((p) => ({ slug: p.slug }));
@@ -12,7 +13,7 @@ export async function generateMetadata({ params }: PageProps<"/problema/[slug]">
   const { slug } = await params;
   const found = getProblem(slug);
   if (!found) return {};
-  return { title: `${found.problem.title} — O Homem que Calculava`, description: found.problem.tagline };
+  return pageMetadata(`/problema/${slug}`);
 }
 
 export default async function ProblemPage({ params }: PageProps<"/problema/[slug]">) {
